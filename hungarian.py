@@ -1,5 +1,6 @@
 #!/usr/bin/python
 """
+使用numpy实现匈牙利算法
 Implementation of the Hungarian (Munkres) Algorithm using Python and NumPy
 References: http://www.ams.jhu.edu/~castello/362/Handouts/hungarian.pdf
         http://weber.ucsd.edu/~vcrawfor/hungar.pdf
