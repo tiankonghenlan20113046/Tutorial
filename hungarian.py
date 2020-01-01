@@ -12,7 +12,8 @@ References: http://www.ams.jhu.edu/~castello/362/Handouts/hungarian.pdf
 # Module Information.
 __version__ = "1.1.1"
 __author__ = "Thom Dedecko"
-__url__ = "http://github.com/tdedecko/hungarian-algorithm"
+__url__ = " "
+# 我借用的别人的算法
 __copyright__ = "(c) 2010 Thom Dedecko"
 __license__ = "MIT License"
 
@@ -29,46 +30,49 @@ except ImportError:
 
 class Hungarian:
     """
+    实现匈牙利算法
     Implementation of the Hungarian (Munkres) Algorithm using np.
 
-    Usage:
+    Usage:(如何使用)
         hungarian = Hungarian(cost_matrix)
         hungarian.calculate()
     or
         hungarian = Hungarian()
         hungarian.calculate(cost_matrix)
 
-    Handle Profit matrix:
+    Handle Profit matrix: （处理成本矩阵）
         hungarian = Hungarian(profit_matrix, is_profit_matrix=True)
     or
         cost_matrix = Hungarian.make_cost_matrix(profit_matrix)
 
-    The matrix will be automatically padded if it is not square.
+    The matrix will be automatically padded if it is not square.(如果矩阵不是方阵，那么行或者列自动补充为方阵)
     For that numpy's resize function is used, which automatically adds 0's to any row/column that is added
-
-    Get results and total potential after calculation:
+    (使用numpy中的resize函数，可以实现自动填充0元素)
+    Get results and total potential after calculation:(计算后获得结果)
         hungarian.get_results()
         hungarian.get_total_potential()
     """
 
     def __init__(self, input_matrix=None, is_profit_matrix=False):
         """
-        input_matrix is a List of Lists.
-        input_matrix is assumed to be a cost matrix unless is_profit_matrix is True.
+        input_matrix is a List of Lists.(输入矩阵是含有列表的列表)
+        input_matrix is assumed to be a cost matrix unless is_profit_matrix is True.(除非is_profit_matrix是True,否则假定
+        输入矩阵是一个代价矩阵)
         """
         if input_matrix is not None:
             # Save input
             my_matrix = np.array(input_matrix)
-            self._input_matrix = np.array(input_matrix)
-            self._maxColumn = my_matrix.shape[1]
-            self._maxRow = my_matrix.shape[0]
+            self._input_matrix = np.array(input_matrix)#将列表转变为numpy数组
+            self._maxColumn = my_matrix.shape[1] #矩阵列
+            self._maxRow = my_matrix.shape[0]#矩阵行
 
-            # Adds 0s if any columns/rows are added. Otherwise stays unaltered
+            # Adds 0s if any columns/rows are added. Otherwise stays unaltered（增加行/列时候增加0，否则保持不变）
             matrix_size = max(self._maxColumn, self._maxRow)
             pad_columns = matrix_size - self._maxRow
             pad_rows = matrix_size - self._maxColumn
+            print("my_matrix:\n"+str(my_matrix))
             my_matrix = np.pad(my_matrix, ((0,pad_columns),(0,pad_rows)), 'constant', constant_values=(0))
-
+            print("my_matrix after padding:\n"+str(my_matrix))
             # Convert matrix to profit matrix if necessary
             if is_profit_matrix:
                 my_matrix = self.make_cost_matrix(my_matrix)
@@ -94,11 +98,12 @@ class Hungarian:
     def calculate(self, input_matrix=None, is_profit_matrix=False):
         """
         Implementation of the Hungarian (Munkres) Algorithm.
-
-        input_matrix is a List of Lists.
+        (实现匈牙利算法)
+        input_matrix is a List of Lists.(输入是包含列表的列表)
         input_matrix is assumed to be a cost matrix unless is_profit_matrix is True.
+        （除非is_profit_matrix=True，否则input_matrix假定为代价矩阵）
         """
-        # Handle invalid and new matrix inputs.
+        # Handle invalid and new matrix inputs.(处理不合法的矩阵输入)
         if input_matrix is None and self._cost_matrix is None:
             raise HungarianError("Invalid input")
         elif input_matrix is not None:
@@ -116,6 +121,7 @@ class Hungarian:
 
         # Step 3: Use minimum number of lines to cover all zeros in the matrix.用最少的线覆盖矩阵的0元素
         # If the total covered rows+columns is not equal to the matrix size then adjust matrix and repeat.
+        #如果已经覆盖的行数+列数和矩阵的尺寸不等，那么调整矩阵的尺寸并且重复步骤。
         total_covered = 0
         while total_covered < self._size:
             # Find minimum number of lines to cover all zeros in the matrix and find total covered rows and columns.
@@ -129,8 +135,11 @@ class Hungarian:
                 result_matrix = self._adjust_matrix_by_min_uncovered_num(result_matrix, covered_rows, covered_columns)
 
         # Step 4: Starting with the top row, work your way downwards as you make assignments.
+        #步骤4：从第一行开始，向下进行分配。
         # Find single zeros in rows or columns.
+        #在行或列中查找单个零。
         # Add them to final result and remove them and their associated row/column from the matrix.
+        #将它们添加到最终结果中，然后从矩阵中删除它们及其关联的行 / 列。
         expected_results = min(self._maxColumn, self._maxRow)
         zero_locations = (result_matrix == 0)
         while len(self._results) != expected_results:
@@ -139,7 +148,7 @@ class Hungarian:
             if not zero_locations.any():
                 raise HungarianError("Unable to find results. Algorithm has failed.")
 
-            # Find results and mark rows and columns for deletion
+            # Find results and mark rows and columns for deletion 查找结果并将行和列标记为删除
             matched_rows, matched_columns = self.__find_matches(zero_locations)
 
             # Make arbitrary selection
@@ -444,12 +453,15 @@ class CoverZeros:
 
 
 if __name__ == '__main__':
+    print("first try:\n")
     profit_matrix = [
         [62, 75, 80, 93, 95, 97],
         [75, 80, 82, 85, 71, 97],
         [80, 75, 81, 98, 90, 97],
         [78, 82, 84, 80, 50, 98],
         [90, 85, 85, 80, 85, 99],
+        [65, 75, 80, 75, 68, 96],
+        [65, 75, 80, 75, 68, 96],
         [65, 75, 80, 75, 68, 96]]
 
     hungarian = Hungarian(profit_matrix, is_profit_matrix=True)
@@ -472,7 +484,7 @@ if __name__ == '__main__':
     print("Expected results:\n\t[(0, 1), (1, 0), (2, 2)]")
     print("Results:\n\t", hungarian.get_results())
     print("-" * 80)
-
+    print("second try:\n")
     profit_matrix = [
         [62, 75, 80, 93, 0, 97],
         [75, 0, 82, 85, 71, 97],
