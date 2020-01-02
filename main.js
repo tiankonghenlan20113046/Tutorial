@@ -1,4 +1,4 @@
-// JScript source code
+// JScript source code reference:https://github.com/ycraaron/LuotuoCoin
 const sha256 = require("crypto-js/sha256");
 
 console.log("luotuo1经过的哈希运算的值："+sha256('luotuo1').toString())
