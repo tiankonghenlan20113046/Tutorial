@@ -38,9 +38,11 @@ Database Content
   7- A boolean value that tells whether the found solution is optimal or not.
   8- The classes of graphs g_1 and g_2.
   9- The matching sequence found by method P.
-  10- For instance Node:(ÊµÀý)3->4=0.0 means that substituting vertex 3 on graph g_1 with vertex 4 on graph g_2 costs 0.0. Moreover, Edge:1_<>2->1_<>5=4.0 means that substituting
-      1_<>2 on graph g_1 with edge 1_<>5 on graph g_2 costs 4.0. On the other hand, Node:3->eps=4.0 means that deleting vertex 3 costs 4.0 while vertex:eps->4=6.0 means that
-      inserting vertex 4 costs 6.0.	 
+  10- For instance Node:
+(GIVE AN EXAMPLE)
+	3->4=0.0 means that substituting vertex 3 on graph g_1 with vertex 4 on graph g_2 costs 0.0. 
+	Moreover, Edge:1_<>2->1_<>5=4.0 means that substituting 1_<>2 on graph g_1 with edge 1_<>5 on graph g_2 costs 4.0. 
+	On the other hand, Node:3->eps=4.0 means that deleting vertex 3 costs 4.0 while vertex:eps->4=6.0 means that inserting vertex 4 costs 6.0.	 
  
  - Protein-subsets
    Contains 4 subsets (Protein-20, Protein-30, Protein-40 and Protein-MIX) from the Protein database, each of which has 10 graphs. 100 pairwise matchings were conducted per subset.
