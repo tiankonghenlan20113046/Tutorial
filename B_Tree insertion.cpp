@@ -4,7 +4,7 @@
 #include<windows.h>
 using namespace std; 
 
-// A BTree node 
+// A BTree node  B-Tree节点
 class BTreeNode 
 { 
 	int *keys; // An array of keys 
@@ -35,11 +35,11 @@ public:
 friend class BTree; 
 }; 
 
-// A BTree 
+// A BTree B-Tree树定义
 class BTree 
 { 
 	BTreeNode *root; // Pointer to root node 
-	int t; // Minimum degree 最小的度，B-Tree中除根节点都应该满足
+	int t; // Minimum degree 最小的度，由磁盘块的大小决定。
 public: 
 	// Constructor (Initializes tree as empty) 
 	BTree(int _t) 
@@ -73,7 +73,7 @@ BTreeNode::BTreeNode(int t1, bool leaf1)
 	n = 0; 
 } 
 
-// Function to traverse all nodes in a subtree rooted with this node 
+// Function to traverse all nodes in a subtree rooted with this node  
 void BTreeNode::traverse() 
 { 
 	// There are n keys and n+1 children, traverse through n keys 

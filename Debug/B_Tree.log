@@ -1,0 +1,28 @@
+﻿生成启动时间为 2020/1/5 14:36:15。
+     1>项目“f:\users\wzq\documents\visual studio 2010\Projects\B_Tree\B_Tree.vcxproj”在节点 2 上(build 个目标)。
+     1>InitializeBuildStatus:
+         正在创建“Debug\B_Tree.unsuccessfulbuild”，因为已指定“AlwaysCreate”。
+       ClCompile:
+         f:\安装路径\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc100.pdb" /Gd /TP /analyze- /errorReport:prompt "B_Tree delition.cpp" "B_Tree insertion.cpp"
+         B_Tree insertion.cpp
+         B_Tree delition.cpp
+         正在生成代码...
+       ManifestResourceCompile:
+         所有输出均为最新。
+       Link:
+         f:\安装路径\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"f:\users\wzq\documents\visual studio 2010\Projects\B_Tree\Debug\B_Tree.exe" /INCREMENTAL /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /ManifestFile:"Debug\B_Tree.exe.intermediate.manifest" /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /DEBUG /PDB:"f:\users\wzq\documents\visual studio 2010\Projects\B_Tree\Debug\B_Tree.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"f:\users\wzq\documents\visual studio 2010\Projects\B_Tree\Debug\B_Tree.lib" /MACHINE:X86 Debug\B_Tree.exe.embed.manifest.res
+         "Debug\B_Tree delition.obj"
+         "Debug\B_Tree insertion.obj"
+     1>B_Tree insertion.obj : error LNK2005: "public: __thiscall BTreeNode::BTreeNode(int,bool)" (??0BTreeNode@@QAE@H_N@Z) 已经在 B_Tree delition.obj 中定义
+     1>B_Tree insertion.obj : error LNK2005: "public: void __thiscall BTreeNode::traverse(void)" (?traverse@BTreeNode@@QAEXXZ) 已经在 B_Tree delition.obj 中定义
+     1>B_Tree insertion.obj : error LNK2005: "public: class BTreeNode * __thiscall BTreeNode::search(int)" (?search@BTreeNode@@QAEPAV1@H@Z) 已经在 B_Tree delition.obj 中定义
+     1>B_Tree insertion.obj : error LNK2005: "public: void __thiscall BTree::insert(int)" (?insert@BTree@@QAEXH@Z) 已经在 B_Tree delition.obj 中定义
+     1>B_Tree insertion.obj : error LNK2005: "public: void __thiscall BTreeNode::insertNonFull(int)" (?insertNonFull@BTreeNode@@QAEXH@Z) 已经在 B_Tree delition.obj 中定义
+     1>B_Tree insertion.obj : error LNK2005: "public: void __thiscall BTreeNode::splitChild(int,class BTreeNode *)" (?splitChild@BTreeNode@@QAEXHPAV1@@Z) 已经在 B_Tree delition.obj 中定义
+     1>B_Tree insertion.obj : error LNK2005: _main 已经在 B_Tree delition.obj 中定义
+     1>f:\users\wzq\documents\visual studio 2010\Projects\B_Tree\Debug\B_Tree.exe : fatal error LNK1169: 找到一个或多个多重定义的符号
+     1>已完成生成项目“f:\users\wzq\documents\visual studio 2010\Projects\B_Tree\B_Tree.vcxproj”(build 个目标)的操作 - 失败。
+
+生成失败。
+
+已用时间 00:00:01.98
